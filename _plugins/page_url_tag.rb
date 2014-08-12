@@ -1,6 +1,5 @@
 module Jekyll
   class PageUrlTag < Liquid::Tag
-
     def initialize(tag_name, text, tokens)
       super
       @text = text
@@ -10,9 +9,7 @@ module Jekyll
       site = context.registers[:site]
 
       site.pages.each do |p|
-        if p.basename.downcase == @text.downcase.strip
-          return p.url
-        end
+        return p.url if p.basename.downcase == @text.downcase.strip
       end
 
       '/'
